@@ -10,8 +10,8 @@ class MqttClient:
     def __init__(self, host, usr, password):
         self.client = mqtt.Client(protocol=mqtt.MQTTv311)
         self.client.on_publish = MqttClient.on_publish
-        self.client.username_pw_set("ysdkltdu", "5SX1fOJNL4en")
-        self.client.connect("tailor.cloudmqtt.com", port=18096, keepalive=60)
+        self.client.username_pw_set(usr, password)
+        self.client.connect(host, port=18096, keepalive=60)
         self.client.loop_start()
 
     def __del__(self):
