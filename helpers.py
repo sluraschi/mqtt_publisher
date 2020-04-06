@@ -51,18 +51,20 @@ def get_all_segments(file):
 
 def split_by_size(file_path):
     with open(file_path, "rb") as f:
+        i = 0
         chuncks = list()
         print('empty chunks size:', getsizeof(chuncks))
 
         while True:
             piece_of_file = f.read(CHUNK_SIZE)
             print('piece_of_file size:', getsizeof(piece_of_file))
-            print(piece_of_file.decode())
+            # print(piece_of_file.decode()) # Use for debugging only
             if piece_of_file.decode() == "":
                 break
             chuncks.append(piece_of_file)
-            chuncks_size = deep_getsizeof(chuncks, set())
-            print('chuncks size:', getsizeof(chuncks))
-            print('chuncks and contents size:', chuncks_size)
+            i = i + 1
+            print('chunk number', i)
+            # chuncks_size = deep_getsizeof(chuncks, set())     # Use for debugging only - it adds a lot of time
+            # print('chuncks and contents size:', chuncks_size) # to the operation
     print('amount of chuncks to send:', len(chuncks))
     return chuncks

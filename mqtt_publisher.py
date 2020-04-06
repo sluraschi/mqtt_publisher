@@ -7,7 +7,7 @@ from helpers import split_by_size
 
 
 def main():
-    file_path = 'paquete_reducido'
+    file_path = 'paquete_ejemplo'
     client = MqttClient("tailor.cloudmqtt.com", "ysdkltdu", "5SX1fOJNL4en")
 
     start = time.time()
