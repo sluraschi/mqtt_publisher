@@ -19,17 +19,17 @@ class MqttClient:
 
     @staticmethod
     def on_publish(client, userdata, mid):
-        print 'Published message with id:', mid
+        print('Published message with id:', mid)
 
     def send_multiple_messages(self, segments):
-        print '\nSending multiple payloads...'
+        print('\nSending multiple payloads...')
         success_status = True
         for seg in segments:
             result = self.client.publish(topic=TOPIC, payload=seg, qos=1)
             time.sleep(2)
             result.wait_for_publish()
             if result.rc != 0:
-                print 'Error publishing in message', result.mid, 'with code:', result.rc
+                print('Error publishing in message', result.mid, 'with code:', result.rc)
                 success_status = False
         return success_status
 

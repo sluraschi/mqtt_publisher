@@ -23,11 +23,11 @@ def deep_getsizeof(o, ids):
     r = getsizeof(o)
     ids.add(id(o))
 
-    if isinstance(o, str) or isinstance(0, unicode):
+    if isinstance(o, str):
         return r
 
     if isinstance(o, Mapping):
-        return r + sum(d(k, ids) + d(v, ids) for k, v in o.iteritems())
+        return r + sum(d(k, ids) + d(v, ids) for k, v in o.items())
 
     if isinstance(o, Container):
         return r + sum(d(x, ids) for x in o)
@@ -52,17 +52,17 @@ def get_all_segments(file):
 def split_by_size(file_path):
     with open(file_path, "rb") as f:
         chuncks = list()
-        print 'empty chunks size:', getsizeof(chuncks)
+        print('empty chunks size:', getsizeof(chuncks))
 
         while True:
             piece_of_file = f.read(CHUNK_SIZE)
-            print 'piece_of_file size:', getsizeof(piece_of_file)
-            print piece_of_file
-            if piece_of_file == "":
+            print('piece_of_file size:', getsizeof(piece_of_file))
+            print(piece_of_file.decode())
+            if piece_of_file.decode() == "":
                 break
             chuncks.append(piece_of_file)
             chuncks_size = deep_getsizeof(chuncks, set())
-            print 'chuncks size:', getsizeof(chuncks)
-            print 'chuncks and contents size:', chuncks_size
-    print 'amount of chuncks to send:', len(chuncks)
+            print('chuncks size:', getsizeof(chuncks))
+            print('chuncks and contents size:', chuncks_size)
+    print('amount of chuncks to send:', len(chuncks))
     return chuncks
