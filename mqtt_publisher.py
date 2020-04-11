@@ -17,6 +17,7 @@ def main():
 
     if success:
         print('\nAll segments sent!')
+        client.send_multiple_messages(['Finish'])
     else:
         print('\nAn error was found while publishing')
     elapsed = end - start
