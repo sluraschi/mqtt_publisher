@@ -29,7 +29,5 @@ def read_sensor():
     x = ser.read(size_as_int)
     with open(output_name, 'w+') as f:
         f.write(x)
-    ser.reset_input_buffer()
-    ser.reset_output.buffer()
 
     return output_name
