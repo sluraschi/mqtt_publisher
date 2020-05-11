@@ -6,8 +6,7 @@ from mqtt_client import MqttClient
 from helpers import split_by_size
 
 
-def main():
-    file_path = 'paquete_ejemplo'
+def publish(file_path):
     client = MqttClient("tailor.cloudmqtt.com", "ysdkltdu", "5SX1fOJNL4en")
 
     start = time.time()
@@ -16,12 +15,14 @@ def main():
     end = time.time()
 
     if success:
-        print('\nAll segments sent!')
+        mssg = '\nAll segments sent!'
     else:
-        print('\nAn error was found while publishing')
+        mssg = '\nAn error was found while publishing'
     elapsed = end - start
+    print(mssg)
     print('Elapsed time:', elapsed, 'seconds')
 
 
 if __name__ == "__main__":
-    main()
+    file = "paquete_vacio"
+    publish(file)
