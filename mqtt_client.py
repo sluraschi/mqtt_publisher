@@ -3,7 +3,7 @@ import paho.mqtt.client as mqtt
 import time
 
 HEADER_LINES = 3
-TOPIC = "/pi/test"
+TOPIC = "/pi/temp"
 
 
 class MqttClient:

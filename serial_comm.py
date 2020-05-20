@@ -28,6 +28,6 @@ def read_sensor():
 
     x = ser.read(size_as_int)
     with open(output_name, 'w+') as f:
-        f.write(x)
+        f.write(x.decode('utf-8'))
 
     return output_name
