@@ -3,7 +3,7 @@ import paho.mqtt.client as mqtt
 import time
 
 HEADER_LINES = 3
-TOPIC = "/pi/test"
+TOPIC = "/pi/temp"
 
 
 class MqttClient:
@@ -31,6 +31,7 @@ class MqttClient:
             if result.rc != 0:
                 print('Error publishing in message', result.mid, 'with code:', result.rc)
                 success_status = False
+        self.client.publish(topic=TOPIC, payload='Finish', qos=1)
         return success_status
 
 # for testing purpose
