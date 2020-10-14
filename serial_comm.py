@@ -31,3 +31,8 @@ def read_sensor():
         f.write(x.decode('utf-8'))
 
     return output_name
+
+
+if __name__ == "__main__":
+    while 1:
+        read_sensor();
