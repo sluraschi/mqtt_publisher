@@ -1,17 +1,20 @@
 # MQTT Publish Demo
 
 import time
+import sys
 
 from mqtt_client import MqttClient
 from helpers import split_by_size
 
+import config
 
-def publish(file_path):
-    client = MqttClient("tailor.cloudmqtt.com", "ysdkltdu", "5SX1fOJNL4en")
+
+def publish(file_path, topic):
+    client = MqttClient(config.HOST, config.USER, config.PW)
 
     start = time.time()
     list_of_payloads = split_by_size(file_path)
-    success = client.send_multiple_messages(list_of_payloads)
+    success = client.send_multiple_messages(list_of_payloads, topic)
     end = time.time()
 
     if success:
@@ -25,4 +28,4 @@ def publish(file_path):
 
 if __name__ == "__main__":
     file = "paquete_vacio"
-    publish(file)
+    publish(file, sys.argv[1])
