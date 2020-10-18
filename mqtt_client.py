@@ -2,9 +2,6 @@ import paho.mqtt.publish as publish
 import paho.mqtt.client as mqtt
 import time
 
-HEADER_LINES = 3
-TOPIC = "/pi/temp"
-
 
 class MqttClient:
     def __init__(self, host, usr, password):
@@ -21,17 +18,17 @@ class MqttClient:
     def on_publish(client, userdata, mid):
         print('Published message with id:', mid)
 
-    def send_multiple_messages(self, segments):
+    def send_multiple_messages(self, segments, topic):
         print('\nSending multiple payloads...')
         success_status = True
         for seg in segments:
-            result = self.client.publish(topic=TOPIC, payload=seg, qos=1)
+            result = self.client.publish(topic=topic, payload=seg, qos=1)
             time.sleep(2)
             result.wait_for_publish()
             if result.rc != 0:
                 print('Error publishing in message', result.mid, 'with code:', result.rc)
                 success_status = False
-        self.client.publish(topic=TOPIC, payload='Finish', qos=1)
+        self.client.publish(topic=topic, payload='Finish', qos=1)
         return success_status
 
 # for testing purpose
